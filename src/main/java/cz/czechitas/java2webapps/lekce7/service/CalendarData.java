@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * @author Filip Jirsák
@@ -23,10 +22,10 @@ public class CalendarData implements Iterable<DateData> {
   }
 
   public LocalDate getFirstDay() {
-    return list.getFirst().getDate();
+    return list.getFirst().date();
   }
 
   public LocalDate getLastDay() {
-    return list.getLast().getDate();
+    return list.getLast().date();
   }
 }
