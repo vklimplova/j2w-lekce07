@@ -14,24 +14,24 @@ public class CalendarService {
   public int getCurrentYear() {
     return LocalDate.now().getYear();
   }
-  public CalendarData christmas(int year) {
+  public CalendarDTO christmas(int year) {
     LocalDate date = LocalDate.of(year, Month.DECEMBER, 24);
-    return new CalendarData()
+    return new CalendarDTO()
             .append("Štědrý den", date)
             .append("1. Svátek vánoční", date.plusDays(1L))
             .append("2. Svátek vánoční", date.plusDays(2L));
   }
 
-  public CalendarData sylvester(int year) {
+  public CalendarDTO sylvester(int year) {
     LocalDate date = LocalDate.of(year, Month.DECEMBER, 31);
-    return new CalendarData()
+    return new CalendarDTO()
             .append("Silvestr", date)
             .append("Nový rok", date.plusDays(1L));
   }
 
-  public CalendarData easter(int year) {
+  public CalendarDTO easter(int year) {
     LocalDate date = easterSunday(year);
-    return new CalendarData()
+    return new CalendarDTO()
             .append("Zelený čtvrtek", date.minusDays(3L))
             .append("Velký pátek", date.minusDays(2L))
             .append("Bílá sobota", date.minusDays(1L))
@@ -39,9 +39,9 @@ public class CalendarService {
             .append("Pondělí Velikonoční", date.plusDays(1L));
   }
 
-  public CalendarData pentecost(int year) {
+  public CalendarDTO pentecost(int year) {
     LocalDate date = easterSunday(year).plusDays(49L);
-    return new CalendarData()
+    return new CalendarDTO()
             .append("Letnice", date);
   }
 

@@ -4,12 +4,10 @@ import freemarker.ext.beans.BeansWrapperConfiguration;
 import freemarker.ext.beans.DateModel;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.DefaultObjectWrapperConfiguration;
-import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
 import freemarker.template.Version;
 
-import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
@@ -18,16 +16,16 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
-public class Java8TimeObjectWrapper extends DefaultObjectWrapper {
-  public Java8TimeObjectWrapper(Version incompatibleImprovements) {
+public class Java17ObjectWrapper extends DefaultObjectWrapper {
+  public Java17ObjectWrapper(Version incompatibleImprovements) {
     super(incompatibleImprovements);
   }
 
-  public Java8TimeObjectWrapper(BeansWrapperConfiguration bwCfg, boolean writeProtected) {
+  public Java17ObjectWrapper(BeansWrapperConfiguration bwCfg, boolean writeProtected) {
     super(bwCfg, writeProtected);
   }
 
-  public Java8TimeObjectWrapper(DefaultObjectWrapperConfiguration dowCfg, boolean writeProtected) {
+  public Java17ObjectWrapper(DefaultObjectWrapperConfiguration dowCfg, boolean writeProtected) {
     super(dowCfg, writeProtected);
   }
 
@@ -59,33 +57,9 @@ public class Java8TimeObjectWrapper extends DefaultObjectWrapper {
       return new DateModel(date, this);
     }
     if (obj instanceof Record record) {
-      return new RecordModel(record);
+      return new RecordModel(this, record);
     }
     return super.handleUnknownType(obj);
   }
 
-  private class RecordModel implements TemplateHashModel {
-    private final Record value;
-
-    public RecordModel(Record value) {
-      this.value = value;
-    }
-
-    @Override
-    public TemplateModel get(String key) throws TemplateModelException {
-      try {
-        Object propertyValue = value.getClass()
-                .getMethod(key)
-                .invoke(value);
-        return Java8TimeObjectWrapper.this.wrap(propertyValue);
-      } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-        throw new RuntimeException(e);
-      }
-    }
-
-    @Override
-    public boolean isEmpty() throws TemplateModelException {
-      return false;
-    }
-  }
 }

@@ -8,16 +8,16 @@ import java.util.LinkedList;
 /**
  * @author Filip Jirsák
  */
-public class CalendarData implements Iterable<DateData> {
-  private final Deque<DateData> list = new LinkedList<>();
+public class CalendarDTO implements Iterable<DateDTO> {
+  private final Deque<DateDTO> list = new LinkedList<>();
 
-  public CalendarData append(String label, LocalDate date) {
-    list.add(new DateData(label, date));
+  public CalendarDTO append(String label, LocalDate date) {
+    list.add(new DateDTO(label, date));
     return this;
   }
 
   @Override
-  public Iterator<DateData> iterator() {
+  public Iterator<DateDTO> iterator() {
     return list.iterator();
   }
 

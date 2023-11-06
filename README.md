@@ -6,4 +6,4 @@ Dnes se zaměříme na to, jak organizovat kód v projektu. A řekneme si, co je
 1. Naklonuj si repository **ze svého účtu** na GitHubu na lokální počítač.
 
 ## Odkazy
-* [Lekce 7](https://java.czechitas.cz/2021-jaro/java-2/lekce-7.html)
+* [Lekce 7](https://java.czechitas.cz/2023-jaro/java-2-online/lekce-7.html)

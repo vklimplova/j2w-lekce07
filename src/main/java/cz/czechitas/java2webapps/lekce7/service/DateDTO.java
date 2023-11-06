@@ -5,5 +5,5 @@ import java.time.LocalDate;
 /**
  * @author Filip Jirsák
  */
-public record DateData(String label, LocalDate date) {
+public record DateDTO(String label, LocalDate date) {
 }

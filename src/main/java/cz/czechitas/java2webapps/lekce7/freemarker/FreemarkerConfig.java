@@ -1,7 +1,5 @@
 package cz.czechitas.java2webapps.lekce7.freemarker;
 
-import freemarker.template.DefaultObjectWrapper;
-import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.DefaultObjectWrapperConfiguration;
 import freemarker.template.Version;
 import org.springframework.beans.BeansException;
@@ -15,15 +13,15 @@ public class FreemarkerConfig implements BeanPostProcessor {
   @Override
   public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
     if (bean instanceof FreeMarkerConfigurer configurer) {
-      Java8TimeObjectWrapperConfiguration objectWrapperConfiguration = new Java8TimeObjectWrapperConfiguration(freemarker.template.Configuration.VERSION_2_3_31);
-      Java8TimeObjectWrapper objectWrapper = new Java8TimeObjectWrapper(objectWrapperConfiguration, true);
+      Java17ObjectWrapperConfiguration objectWrapperConfiguration = new Java17ObjectWrapperConfiguration(freemarker.template.Configuration.VERSION_2_3_32);
+      Java17ObjectWrapper objectWrapper = new Java17ObjectWrapper(objectWrapperConfiguration, true);
       configurer.getConfiguration().setObjectWrapper(objectWrapper);
     }
     return bean;
   }
 
-  private static class Java8TimeObjectWrapperConfiguration extends DefaultObjectWrapperConfiguration {
-    protected Java8TimeObjectWrapperConfiguration(Version incompatibleImprovements) {
+  private static class Java17ObjectWrapperConfiguration extends DefaultObjectWrapperConfiguration {
+    protected Java17ObjectWrapperConfiguration(Version incompatibleImprovements) {
       super(incompatibleImprovements);
       setIterableSupport(true);
     }
