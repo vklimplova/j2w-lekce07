@@ -20,7 +20,7 @@ public class CalendarController {
     this.service = service;
   }
 
-  @ModelAttribute("year")
+  @ModelAttribute("currentyear")
   public int getCurrentYear() {
     return service.getCurrentYear();
   }
